@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  link(rel='stylesheet' href='/stylesheets/bulma.css' type='text/css')
+  section.hero.is-primary.is-fullheight
+    .hero-head
+      header.nav
+        .container
+          .nav-left
+            h1.title(style='padding-top:5px'): a(href='/blogs') #{title}
+          .nav-right.nav-menu
+            a.nav-item(href='/demos') demos
+            if (user)
+              a.nav-item(href='/edit') new post
+              a.nav-item(href='/logout') logout #{user.username}
+      .hero-body
+      .container
+        .box.has-text-dark(style='opacity: 0.85')
+          h2.title(style='color: #505050') Sessions
+          .content(style='max-height:500px;overflow:auto;')
+            p According to 
+              a(href='https://www.owasp.org/index.php/Session_Management_Cheat_Sheet') OWASP, 
+              A web session is a sequence of network HTTP request and response transactions associated to the same user. These sessions allow a user to authenticate themselves and perorm actions on the site without haveing to provide credentials for each action because the server is able to verify that these actions are being commited by the same user by checking the session id. Session management is made easy in Node using 
+              a(href='http://passportjs.org/docs') Passport.
+      footer.footer(style='background-color:#cedbd8;')
+        .container
+          .has-text-centered
+            p <strong>Bloggit</strong>
+            p(style='font-size:.65em') In order to use Bloggit, you must register with a username and password. Bloggit uses cookies to help improve your user experience. Cookies allow us to keep you logged in while you use the site. Bloggit is the only entity with acces to you personal inforation supplied here. Bloggit will protect your information and only use it to interact with you.

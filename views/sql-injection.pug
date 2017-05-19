@@ -1,0 +1,62 @@
+extends layout
+
+block content
+  link(rel='stylesheet' href='/stylesheets/bulma.css' type='text/css')
+  section.hero.is-primary.is-fullheight
+    .hero-head
+      header.nav
+        .container
+          .nav-left
+            h1.title(style='padding-top:5px'): a(href='/') #{title}
+          .nav-right.nav-menu
+            a.nav-item(href='/demos') demos
+            if (user)
+              a.nav-item(href='/edit') new post
+              a.nav-item(href='/logout') logout #{user.username}
+    .hero-body
+      .column
+      .column.has-text-centered
+        h2.subtitle Login
+        .box  
+          p(style='color:red') #{message}
+          .field
+            form#login-form.has-text-centered(method='POST' onsubmit='return checkInput()')
+              .field
+                input#_csrf(type='hidden', name='_csrf' value=csrfToken)
+                .field
+                  input#username.input.has-text-centered(type='text', name='username', placeholder='username')
+                .field
+                  input#password.input.has-text-centered(type='password', name='password', placeholder='password')
+              #captcha-svg !{captcha}
+              .field
+                input#captcha.input.has-text-centered(type='text', name='captcha', placeholder='enter captcha')
+              .field
+                button#login-button.button.is-primary.is-outlined login
+          p(style='color:#505050;font-size:.75em') Sample SQL Injection: <span style='color:red'>bob'; DROP TABLE user;</span>
+          p(style='color:#505050;font-size:.75em') Without sql injection protection, logging in with the above string as a username deletes all users from the database
+          p(style='color:red;font-size:.75em') #{query}
+      .column
+    footer.footer(style='background-color:#cedbd8;')
+      .container
+        .has-text-centered
+          p <strong>Bloggit</strong>
+          p(style='font-size:.65em') In order to use Bloggit, you must register with a username and password. Bloggit uses cookies to help improve your user experience. Cookies allow us to keep you logged in while you use the site. Bloggit is the only entity with acces to you personal inforation supplied here. Bloggit will protect your information and only use it to interact with you.
+    script.
+      function checkInput() {
+        var username = document.getElementById('username').value.trim();
+        var password = document.getElementById('password').value.trim();
+        var captcha = document.getElementById('captcha').value.trim();
+        if (!username) {
+          alert('Enter username');
+          return false;
+        }
+        if (!password || password.length < 5) {
+          alert('Enter password (must be at least 5 characters)');
+          return false;
+        }
+        if (!captcha) {
+          alert('Invalid captcha');
+          return false;
+        }
+        return true;
+      }

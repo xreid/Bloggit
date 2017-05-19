@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  link(rel='stylesheet' href='/stylesheets/bulma.css' type='text/css')
+  section.hero.is-primary
+    .hero-head
+      header.nav
+        .container
+          .nav-left
+            h1.title(style='padding-top:5px'): a(href='/blogs') #{title}
+          .nav-right.nav-menu
+            a.nav-item(href='/demos') demos
+            if (user)
+              a.nav-item(href='/edit') new post
+              a.nav-item(href='/logout') logout #{user.username}
+    .hero-body
+      .container
+        .box.has-text-dark(style='opacity:0.85;')
+          h2.title(style='color: #505050'): a(href='/sql-injection') SQL Injection
+          p SQL Injection is an attack in which an attacker can submit malicious SQL statements that are executed on an application's database.
+        .box.has-text-dark(style='opacity:0.85;')
+          h2.title(style='color: #505050'): a(href='/xss') Cross Site Scripting (XSS)
+          p XSS is an injection attack in which an attacker can submit a malicious script that has the potential to harm other users.
+        .box.has-text-dark(style='opacity:0.85;')
+          h2.title(style='color: #505050'): a(href='/defacement') Website Defacement
+          p Website defacement is the act of defacing or changing the UI of a website after gaining administrative acces or elevated privileges.
+        .box.has-text-dark(style='opacity:0.85;')
+          h2.title(style='color: #505050'): a(href='/cookies') Cookies
+          p Cookies are pieces of data sent to a user's browser by a server. Theses cookies are stored in the browser and sent to the server with the user's future requests. They can be used for session management and tracking, as well as other purposes.
+        .box.has-text-dark(style='opacity:0.85;')
+          h2.title(style='color: #505050'): a(href='/sessions') Sessions
+          p Sessions store user information and allow a user to stay logged in to a website after submitting credentials.
+    footer.footer(style='background-color:#cedbd8;')
+      .container
+        .has-text-centered
+          p <strong>Bloggit</strong>
+          p(style='font-size:.65em') In order to use Bloggit, you must register with a username and password. Bloggit uses cookies to help improve your user experience. Cookies allow us to keep you logged in while you use the site. Bloggit is the only entity with acces to you personal inforation supplied here. Bloggit will protect your information and only use it to interact with you.
+          

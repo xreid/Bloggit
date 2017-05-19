@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  link(rel='stylesheet' href='/stylesheets/bulma.css' type='text/css')
+  section.hero.is-primary.is-fullheight
+    .hero-head
+      header.nav
+        .container
+          .nav-left
+            h1.title(style='padding-top:5px'): a(href='/blogs') #{title}
+          .nav-right.nav-menu
+            a.nav-item(href='/demos') demos
+            if (user)
+              a.nav-item(href='/edit') new post
+              a.nav-item(href='/logout') logout #{user.username}
+    .hero-body
+      .container.has-text-centered
+        h2.title Cookies
+        h3.subtitle Last time you visited this page: #{lastVisit}
+        form(method='POST')
+          input#_csrf(type='hidden', name='_csrf' value=csrfToken)
+          button#login-button.button.is-white.is-outlined clear cookie
+        if (user)
+          h4.subtitle: a.nav-item(href='/logout') logout and see that the cookie still works
+    footer.footer(style='background-color:#cedbd8;')
+      .container
+        .has-text-centered
+          p <strong>Bloggit</strong>
+          p(style='font-size:.65em') In order to use Bloggit, you must register with a username and password. Bloggit uses cookies to help improve your user experience. Cookies allow us to keep you logged in while you use the site. Bloggit is the only entity with acces to you personal inforation supplied here. Bloggit will protect your information and only use it to interact with you.
+  script.
+    
