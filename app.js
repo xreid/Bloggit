@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var passport = require('passport');
 var flash = require('connect-flash');
+var favicon = require('serve-favicon');
 require('./configs/passport')(passport);
 
 var index = require('./routes/index');
@@ -31,6 +32,7 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash());
 var csrf = require('csurf');
 app.use(csrf());
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 
 app.use('/', index);
 app.use('/users', users);
