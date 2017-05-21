@@ -10,10 +10,13 @@
 * Injection Protection
 
 ## Usage
+(Requires running instance of mysql)
 
 `git clone https://github.com/xreid/Bloggit.git`
 
 `cd bloggit`
+
+`node configs/cerateDB`
 
 `npm install`
 
